@@ -2,6 +2,7 @@ package com.example.Insurance_Management_System.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,10 +30,12 @@ public class InsurancePolicy {
     private LocalDate startDate;
     private LocalDate endDate;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "insurancePolicy")
     private List<Claim> claims;
 

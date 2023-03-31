@@ -19,7 +19,7 @@ public class ClientServicesImpl implements ClientServices{
     public Client registerClient(Client client) throws ClientException {
         Optional<Client> existingClient = clientRepo.findById(client.getId());
 
-        if(existingClient != null){
+        if(existingClient.isPresent()){
             throw new ClientException("Client already registered with this Client ID : "+ client.getId());
         }
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class ClientController {
     private ClientServices clientServices;
 
     @PostMapping("/register")
-    public ResponseEntity<Client> registerClientHandler(Client client) throws ClientException{
+    public ResponseEntity<Client> registerClientHandler(@RequestBody Client client) throws ClientException{
         Client client1 = clientServices.registerClient(client);
         return new ResponseEntity<>(client1, HttpStatus.ACCEPTED);
     }
