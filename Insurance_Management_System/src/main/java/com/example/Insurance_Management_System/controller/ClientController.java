@@ -34,4 +34,11 @@ public class ClientController {
         Client client = clientServices.getClientByID(id);
         return new ResponseEntity<>(client,HttpStatus.OK);
     }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Client> updateClientByIDHandler(@PathVariable("id") Long cID ,@RequestBody Client client) throws ClientException{
+        Client client1 = clientServices.clientUpdateByID(cID,client);
+        return new ResponseEntity<>(client1,HttpStatus.OK);
+    }
 }

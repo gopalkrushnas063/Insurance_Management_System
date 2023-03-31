@@ -44,4 +44,18 @@ public class ClientServicesImpl implements ClientServices{
         }
         throw new ClientException("Client does not exist with this Client ID : "+client_ID);
     }
+
+    @Override
+    public Client clientUpdateByID(Long client_ID,Client client) throws ClientException {
+        Client optionalClient = clientRepo.findById(client_ID).get();
+        optionalClient.setName(client.getName());
+        optionalClient.setDob(client.getDob());
+        optionalClient.setAddress(client.getAddress());
+        optionalClient.setContactInfo(client.getContactInfo());
+        optionalClient.setPolicies(client.getPolicies());
+        if(optionalClient != null){
+            return clientRepo.save(optionalClient);
+        }
+        throw new ClientException("Client does not exist with this Client ID : "+client_ID);
+    }
 }
