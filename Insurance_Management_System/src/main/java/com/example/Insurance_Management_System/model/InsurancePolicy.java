@@ -8,36 +8,51 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "policy")
 public class InsurancePolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "policy_id")
     private Long id;
 
+    @NotNull(message = "Policy number is required")
+    @Column(name = "policy_id")
     private String policyNumber;
-    private Policy_Type type;
-    private BigDecimal coverageAmount;
-    private BigDecimal premium;
+
+    @NotNull(message = "Policy type is required")
+    @Enumerated(EnumType.STRING)
+    private Policy_Type policyType;
+
+    @NotNull(message = "Coverage amount is required")
+    private Double coverageAmount;
+
+    @NotNull(message = "Premium is required")
+    private Double premium;
+
+    @NotNull(message = "Start date is required")
     private LocalDate startDate;
+
+    @NotNull(message = "End date is required")
     private LocalDate endDate;
 
-    @JsonIgnore
+
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
+
     @JsonIgnore
-    @OneToMany(mappedBy = "insurancePolicy")
+    @OneToMany(mappedBy = "policy")
     private List<Claim> claims;
-
 }
-

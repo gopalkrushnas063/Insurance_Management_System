@@ -6,6 +6,7 @@ import com.example.Insurance_Management_System.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,5 +25,14 @@ public class ClientServicesImpl implements ClientServices{
         }
 
         return clientRepo.save(client);
+    }
+
+    @Override
+    public List<Client> allClientList() throws ClientException {
+        List<Client> optionalClients = clientRepo.findAll();
+        if(optionalClients.isEmpty()){
+            throw new ClientException("No any record found");
+        }
+        return optionalClients;
     }
 }
