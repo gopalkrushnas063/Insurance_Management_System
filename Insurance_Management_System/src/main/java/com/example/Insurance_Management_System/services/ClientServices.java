@@ -8,4 +8,5 @@ import java.util.List;
 public interface ClientServices {
     public Client registerClient(Client client) throws ClientException;
     public List<Client> allClientList() throws ClientException;
+    public Client getClientByID(Long client_ID) throws ClientException;
 }

@@ -28,4 +28,10 @@ public class ClientController {
         List<Client> client1 = clientServices.allClientList();
         return new ResponseEntity<>(client1, HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Client> getClientByIDHandler(@PathVariable("id") Long id) throws ClientException{
+        Client client = clientServices.getClientByID(id);
+        return new ResponseEntity<>(client,HttpStatus.OK);
+    }
 }

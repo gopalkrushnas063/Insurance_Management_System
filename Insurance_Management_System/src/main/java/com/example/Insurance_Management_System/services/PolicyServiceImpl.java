@@ -17,8 +17,8 @@ public class PolicyServiceImpl implements PolicyServices{
 
     @Override
     public InsurancePolicy addNewPolicy(InsurancePolicy policy) throws PolicyException {
-        Optional<InsurancePolicy> exisitingPolicy = policyRepo.findByPolicyNumber(policy.getPolicyNumber());
-        if(exisitingPolicy.isPresent()){
+        Optional<InsurancePolicy> existingPolicy = policyRepo.findById(policy.getId());
+        if(existingPolicy.isPresent()){
             throw new PolicyException("Policy Already Exist With This Policy No. : "+policy.getPolicyNumber());
         }
 

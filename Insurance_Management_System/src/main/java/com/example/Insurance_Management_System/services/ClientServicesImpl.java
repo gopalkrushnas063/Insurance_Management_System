@@ -35,4 +35,13 @@ public class ClientServicesImpl implements ClientServices{
         }
         return optionalClients;
     }
+
+    @Override
+    public Client getClientByID(Long client_ID) throws ClientException {
+        Optional<Client> optionalClient = clientRepo.findById(client_ID);
+        if(optionalClient.isPresent()){
+            return optionalClient.get();
+        }
+        throw new ClientException("Client does not exist with this Client ID : "+client_ID);
+    }
 }

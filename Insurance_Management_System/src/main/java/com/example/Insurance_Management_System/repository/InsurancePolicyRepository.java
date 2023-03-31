@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface InsurancePolicyRepository extends JpaRepository<InsurancePolicy,Long> {
-    Optional<InsurancePolicy> findByPolicyNumber(String policyNumber);
+    Optional<InsurancePolicy> findByPolicyNumber(String policyNum);
 }

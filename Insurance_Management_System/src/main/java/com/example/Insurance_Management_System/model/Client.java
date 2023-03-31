@@ -5,12 +5,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.*;
+
+
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,9 +38,9 @@ public class Client {
     @NotNull(message = "Contact information is required")
     private String contactInfo;
 
+
     @JsonIgnore
-    @OneToMany(mappedBy = "client")
-    private List<InsurancePolicy> policies;
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},mappedBy = "client")
+    private List<InsurancePolicy> policies = new ArrayList<>();
 
 }
-
