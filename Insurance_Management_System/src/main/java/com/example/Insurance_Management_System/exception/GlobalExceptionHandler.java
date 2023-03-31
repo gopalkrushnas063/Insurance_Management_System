@@ -11,6 +11,11 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(ClientException.class)
+    public ResponseEntity<MyErrorDetails> ClientExceptionHandler(ClientException exp, WebRequest req){
+        MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), exp.getMessage(), req.getDescription(false));
+        return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+    }
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<MyErrorDetails> RuntimeExceptionHandler(RuntimeException exp, WebRequest req){
         MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), exp.getMessage(), req.getDescription(false));
