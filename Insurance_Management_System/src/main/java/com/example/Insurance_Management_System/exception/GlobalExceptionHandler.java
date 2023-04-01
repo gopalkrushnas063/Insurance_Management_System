@@ -23,6 +23,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ClaimException.class)
+    public ResponseEntity<MyErrorDetails> ClaimExceptionHandler(ClaimException exp, WebRequest req){
+        MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), exp.getMessage(), req.getDescription(false));
+        return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+    }
+
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<MyErrorDetails> RuntimeExceptionHandler(RuntimeException exp, WebRequest req){
