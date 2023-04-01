@@ -1,6 +1,7 @@
 package com.example.Insurance_Management_System.controller;
 
 
+import com.example.Insurance_Management_System.exception.ClientException;
 import com.example.Insurance_Management_System.exception.PolicyException;
 import com.example.Insurance_Management_System.model.InsurancePolicy;
 import com.example.Insurance_Management_System.services.PolicyServices;
@@ -40,5 +41,11 @@ public class PolicyController {
     public ResponseEntity<InsurancePolicy> updatePolicyByIDHandler(@PathVariable("id") Long id,InsurancePolicy policy) throws PolicyException{
         InsurancePolicy policies = policyServices.updatePolicyByID(id,policy);
         return new ResponseEntity<>(policies,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePolicyByIDHandler(@PathVariable("id") Long id) throws PolicyException {
+        String res = policyServices.deletePolicyByID(id);
+        return new ResponseEntity<>(res,HttpStatus.OK);
     }
 }

@@ -58,4 +58,14 @@ public class PolicyServiceImpl implements PolicyServices{
         }
         throw new PolicyException("Policy does not exist with the Policy ID : "+id);
     }
+
+    @Override
+    public String deletePolicyByID(Long id) throws PolicyException {
+        Optional<InsurancePolicy> optionalInsurancePolicy = policyRepo.findById(id);
+        if(optionalInsurancePolicy.isPresent()){
+            policyRepo.deleteById(id);
+            return "Successfully Policy Deleted Which Policy ID : "+id;
+        }
+        throw new PolicyException("Policy does not exist with the policy ID : "+id);
+    }
 }

@@ -10,4 +10,5 @@ public interface PolicyServices {
     public List<InsurancePolicy> getAllPolicies() throws PolicyException;
     public InsurancePolicy getPolicyByID(Long id) throws PolicyException;
     public InsurancePolicy updatePolicyByID(Long id,InsurancePolicy policy) throws PolicyException;
+    public String deletePolicyByID(Long id) throws PolicyException;
 }
