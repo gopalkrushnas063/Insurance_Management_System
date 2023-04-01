@@ -86,5 +86,37 @@ The insurance management system project involves developing a comprehensive soft
 
 <hr>
 
-<h2>ER Diagram </h2>
+<h2 align="center" >MySQL Schema Database Structure</h2>
+<p align="center"><img src="https://user-images.githubusercontent.com/103574856/229284368-c0bfb340-2eca-46a6-bf99-6d2e0e3dcd8d.png"></p>
+
+<hr>
+
+
+ <h3 id="installation-run">Installation &amp; Run</h3>
+    <ul>
+        <li>Before running the API server, you should update the database config inside the <a href="https://github.com/gopalkrushnas063/Insurance_Management_System/blob/main/Insurance_Management_System/src/main/resources/application.properties">application.properties</a>
+            file.</li>
+        <li>Update the port number, username and password as per your local database config.</li>
+    </ul>
+    <pre>
+        <code>
+            server.port=<span class="hljs-number">8080</span>
+            <br>
+            #database specific properties
+            spring<span>.datasource</span><span>.url</span>=jdbc:mysql:<span>//localhost:3306/insuranceManagementDB;</span>
+            spring<span>.datasource</span><span>.driver-class-name</span>=com<span>.mysql</span><span>.cj</span><span>.jdbc</span><span>.Driver</span>
+            spring<span>.datasource</span><span>.username</span>=root
+            spring<span>.datasource</span><span>.password</span>=root
+            <br>
+            #ORM s/w specific properties
+            spring<span>.jpa</span><span>.hibernate</span><span>.ddl-auto</span>=create<span>/update</span> <span>/create-drop</span>
+            spring<span>.jpa</span><span>.show-sql</span>=true
+        </code>
+    </pre>
+    
+
+
+
+
+    
 
