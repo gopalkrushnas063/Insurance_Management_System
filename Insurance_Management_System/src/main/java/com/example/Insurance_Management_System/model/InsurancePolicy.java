@@ -51,8 +51,9 @@ public class InsurancePolicy {
     private LocalDate endDate;
 
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Client client;
+    @JsonIgnore
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Client> client = new ArrayList<>();
 
 
     @JsonIgnore

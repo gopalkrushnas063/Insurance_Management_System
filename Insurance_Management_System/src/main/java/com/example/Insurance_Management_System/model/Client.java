@@ -39,8 +39,8 @@ public class Client {
     private String contactInfo;
 
 
-    @JsonIgnore
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},mappedBy = "client")
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},mappedBy = "client",fetch = FetchType.EAGER)
     private List<InsurancePolicy> policies = new ArrayList<>();
 
 }

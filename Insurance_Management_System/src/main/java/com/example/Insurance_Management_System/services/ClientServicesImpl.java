@@ -2,6 +2,7 @@ package com.example.Insurance_Management_System.services;
 
 import com.example.Insurance_Management_System.exception.ClientException;
 import com.example.Insurance_Management_System.model.Client;
+import com.example.Insurance_Management_System.model.InsurancePolicy;
 import com.example.Insurance_Management_System.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,12 @@ public class ClientServicesImpl implements ClientServices{
 
         if(existingClient.isPresent()){
             throw new ClientException("Client already registered with this Client ID : "+ client.getId());
+        }
+
+        List<InsurancePolicy> policies = client.getPolicies();
+
+        for(InsurancePolicy is : policies) {
+            is.getClient().add(client);
         }
 
         return clientRepo.save(client);
