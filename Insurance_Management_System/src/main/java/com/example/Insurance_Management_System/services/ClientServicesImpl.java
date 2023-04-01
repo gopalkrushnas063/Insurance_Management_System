@@ -65,4 +65,14 @@ public class ClientServicesImpl implements ClientServices{
         }
         throw new ClientException("Client does not exist with this Client ID : "+client_ID);
     }
+
+    @Override
+    public String deleteClientByID(Long client_ID) throws ClientException {
+        Optional<Client> optionalClient = clientRepo.findById(client_ID);
+        if(optionalClient.isPresent()){
+            clientRepo.deleteById(client_ID);
+            return "Successfully deleted the Client with the Client ID : "+client_ID;
+        }
+        throw new ClientException("Client does not exist with the Client ID : "+client_ID);
+    }
 }

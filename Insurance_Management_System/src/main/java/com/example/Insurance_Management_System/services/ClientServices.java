@@ -10,4 +10,5 @@ public interface ClientServices {
     public List<Client> allClientList() throws ClientException;
     public Client getClientByID(Long client_ID) throws ClientException;
     public Client clientUpdateByID(Long client_ID,Client client) throws ClientException;
+    public String deleteClientByID(Long client_ID) throws ClientException;
 }

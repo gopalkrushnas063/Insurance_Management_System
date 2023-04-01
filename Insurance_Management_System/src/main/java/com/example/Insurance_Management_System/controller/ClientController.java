@@ -26,7 +26,7 @@ public class ClientController {
     @GetMapping("/")
     public ResponseEntity<List<Client>> allClientListHandler() throws ClientException{
         List<Client> client1 = clientServices.allClientList();
-        return new ResponseEntity<>(client1, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(client1, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -40,5 +40,12 @@ public class ClientController {
     public ResponseEntity<Client> updateClientByIDHandler(@PathVariable("id") Long cID ,@RequestBody Client client) throws ClientException{
         Client client1 = clientServices.clientUpdateByID(cID,client);
         return new ResponseEntity<>(client1,HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteClientByIDHandler(@PathVariable("id") Long cID) throws ClientException{
+        String res = clientServices.deleteClientByID(cID);
+        return new ResponseEntity<>(res,HttpStatus.OK);
     }
 }
